@@ -1,50 +1,46 @@
-import React from 'react';
-import styles from './Weather.module.css';
+import React, {Component} from 'react';
+//import styles from './Weather.module.css';
+import WeatherDetail from './WeatherDetail';
+import Error from './Error';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <div className={styles.weather}>
-            <div>
-                <h3>
-                    Redmond<br />
-                    <img src="./weather/64x64/day/113.png" alt="Sunny" className={styles.img} /> <br/>
-                    46&#176;F<br/>
-                </h3>
-                <h4 className={styles.alt_text}>
-                    Precipitation: 0% <br/>
-                    Humidity: 5% <br/>
-                    Wind: 3 mph
-                </h4>
-            </div>
-            <div>
-                <h3>
-                    Washington D.C.<br />
-                    <img src="./weather/64x64/day/356.png" alt="Sunny" className={styles.img} /> <br/>
-                    30&#176;F<br/>
-                </h3>
-                <h4 className={styles.alt_text}>
-                    Precipitation: 30% <br/>
-                    Humidity: 29% <br/>
-                    Wind: 12 mph
-                </h4>
-            </div>
-            <div>
-                <h3>
-                    Chicago<br />
-                    <img src="./weather/64x64/day/116.png" alt="Sunny" className={styles.img} /> <br/>
-                    29&#176;F<br/>
-                </h3>
-                <h4 className={styles.alt_text}>
-                    Precipitation: 0% <br/>
-                    Humidity: 48% <br/>
-                    Wind: 9 mph
-                </h4>
-            </div>
-        </div>
-            
-      </div>
-    );
-  }
+class Weather extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            weather: null,
+            error: false,
+        }
+    }
+    
+    async componentDidMount() {
+        const url = "https://api.weatherapi.com/v1/current.json?key=6056506e536e4ef7ab2193723212511&q=Seattle&aqi=no";
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({weather: data})
+        console.log(data);
+        console.log(data.location.name);
+    }
+
+    renderItems() {
+        if(!this.state.error) {
+            return ( 
+                <WeatherDetail item={this.state.weather} />
+            ); 
+        } else {
+            return <Error />
+        }
+        
+    }
+    
+    
+    render() {
+        return (
+          <div>
+              {this.renderItems()} 
+          </div>
+        );
+      }
 }
+
+export default Weather;
+
