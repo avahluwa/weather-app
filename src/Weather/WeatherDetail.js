@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './WeatherDetail.module.css';
 
-const NewSingle = ({item}) => (
+const WeatherDetail = ({item}) => (
     <div>
         <div className={styles.weather}>
             <div>
@@ -46,4 +46,4 @@ const NewSingle = ({item}) => (
     
 )
 
-export default NewSingle;
+export default WeatherDetail;
