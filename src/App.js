@@ -13,7 +13,7 @@ function App() {
       <Background />
       <Title />
       <input type="text" {...inputProps} placeholder="Enter location here" />
-      <Weather loc={inputProps.value} />
+      <Weather location={inputProps.value} />
     </div>
   );
 }

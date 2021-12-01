@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import WeatherDetail from "./WeatherDetail";
 
-export default function Weather({loc}) {
+export default function Weather({location}) {
 
-    const url = `https://api.weatherapi.com/v1/current.json?key=6056506e536e4ef7ab2193723212511&q=${loc}&aqi=no`;
+    const url = `http://api.weatherapi.com/v1/forecast.json?key=df23371d552a4cc18a9165525212711&q=${location}&days=3&aqi=no&alerts=no`;
    
     const [data, setData] = useState(null);
     
