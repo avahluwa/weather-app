@@ -18,9 +18,8 @@ const WeatherDetail = ({item}) => (
             </div>
             <div>
                 <h3>
-                    
                     {item.location.name}<br />
-                    <img src={item.current.condition.icon} alt="Sunny" className={styles.img} /> <br/>
+                    <img src={item.current.condition.icon} alt={item.current.condition.text} className={styles.img} /> <br/>
                     {item.current.temp_f}&#176;F<br/>
                 </h3>
                 <h4 className={styles.alt_text}>

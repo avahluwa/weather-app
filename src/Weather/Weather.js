@@ -1,46 +1,25 @@
-import React, {Component} from 'react';
-//import styles from './Weather.module.css';
-import WeatherDetail from './WeatherDetail';
-import Error from './Error';
+import React, { useState, useEffect } from "react";
+import WeatherDetail from "./WeatherDetail";
 
-class Weather extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            weather: null,
-            error: false,
-        }
-    }
-    
-    async componentDidMount() {
-        const url = "https://api.weatherapi.com/v1/current.json?key=6056506e536e4ef7ab2193723212511&q=Seattle&aqi=no";
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({weather: data})
-        console.log(data);
-        console.log(data.location.name);
-    }
+export default function Weather({location}) {
 
-    renderItems() {
-        if(!this.state.error) {
-            return ( 
-                <WeatherDetail item={this.state.weather} />
-            ); 
-        } else {
-            return <Error />
-        }
-        
-    }
+    const url = `https://api.weatherapi.com/v1/current.json?key=6056506e536e4ef7ab2193723212511&q=${location}&aqi=no`;
+
+    const [data, setData] = useState(null);
     
-    
-    render() {
+    useEffect(() => {
+        fetch(url)
+            .then((response) => response.json())
+            .then(setData);
+    }, [url]);
+
+    if(data) {
         return (
-          <div>
-              {this.renderItems()} 
-          </div>
+            <WeatherDetail item={data} />
         );
-      }
+    }
+    return(
+        <h1>Data could not be loaded.</h1>
+    );
 }
-
-export default Weather;
 
