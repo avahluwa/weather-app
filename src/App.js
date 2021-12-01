@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './App.module.css';
 import Background from './Background/Background';
 import Title from './Title/Title';
@@ -8,7 +9,7 @@ function App() {
     <div className={styles.App}>
       <Background />
       <Title />
-      <Weather />
+      <Weather loc="Redmond" loc2="Des Moines" loc3="Boston" />
     </div>
   );
 }

@@ -1,26 +1,14 @@
 import React from 'react';
 import styles from './WeatherDetail.module.css';
 
-const NewSingle = ({item}) => (
-    <div>
+export default function WeatherDetail({item, item2, item3}) {
+    return(
         <div className={styles.weather}>
+            {/* First location */}
             <div>
                 <h3>
-                    Redmond<br />
-                    <img src="./weather/64x64/day/113.png" alt="Sunny" className={styles.img} /> <br/>
-                    46&#176;F<br/>
-                </h3>
-                <h4 className={styles.alt_text}>
-                    Precipitation: 0% <br/>
-                    Humidity: 5% <br/>
-                    Wind: 3 mph
-                </h4>
-            </div>
-            <div>
-                <h3>
-                    
                     {item.location.name}<br />
-                    <img src={item.current.condition.icon} alt="Sunny" className={styles.img} /> <br/>
+                    <img src={item.current.condition.icon} alt={item.current.condition.text} className={styles.img} /> <br/>
                     {item.current.temp_f}&#176;F<br/>
                 </h3>
                 <h4 className={styles.alt_text}>
@@ -29,21 +17,33 @@ const NewSingle = ({item}) => (
                     Wind: {item.current.wind_mph} mph
                 </h4>
             </div>
+            {/* Second location */}
             <div>
                 <h3>
-                    Chicago<br />
-                    <img src="./weather/64x64/day/116.png" alt="Sunny" className={styles.img} /> <br/>
-                    29&#176;F<br/>
+                    {item2.location.name}<br />
+                    <img src={item2.current.condition.icon} alt={item2.current.condition.text} className={styles.img} /> <br/>
+                    {item2.current.temp_f}&#176;F<br/>
                 </h3>
                 <h4 className={styles.alt_text}>
-                    Precipitation: 0% <br/>
-                    Humidity: 48% <br/>
-                    Wind: 9 mph
+                    Precipitation: {item2.current.precip_in} in.<br/>
+                    Humidity: {item2.current.humidity}% <br/>
+                    Wind: {item2.current.wind_mph} mph
                 </h4>
             </div>
-        </div>
-    </div>
-    
-)
+            {/* Third location */}
+            <div>
+                <h3>
+                    {item3.location.name}<br />
+                    <img src={item3.current.condition.icon} alt={item3.current.condition.text} className={styles.img} /> <br/>
+                    {item3.current.temp_f}&#176;F<br/>
+                </h3>
+                <h4 className={styles.alt_text}>
+                    Precipitation: {item3.current.precip_in} in.<br/>
+                    Humidity: {item3.current.humidity}% <br/>
+                    Wind: {item3.current.wind_mph} mph
+                </h4>
+            </div>
+        </div>    
+    );
+}
 
-export default NewSingle;
