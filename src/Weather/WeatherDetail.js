@@ -28,21 +28,7 @@ const WeatherDetail = ({item}) => (
                     Wind: {item.current.wind_mph} mph
                 </h4>
             </div>
-            <div>
-                <h3>
-                    Chicago<br />
-                    <img src="./weather/64x64/day/116.png" alt="Sunny" className={styles.img} /> <br/>
-                    29&#176;F<br/>
-                </h3>
-                <h4 className={styles.alt_text}>
-                    Precipitation: 0% <br/>
-                    Humidity: 48% <br/>
-                    Wind: 9 mph
-                </h4>
-            </div>
-        </div>
-    </div>
-    
+        </div>    
 )
 
 export default WeatherDetail;
