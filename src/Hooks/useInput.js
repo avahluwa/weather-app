@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export const useInput = startValue => {
-    const [value, setValue] = useState(startValue);
+export function useInput(defaultValue) {
+    const [value, setValue] = useState(defaultValue);
+
+    function onSubmit(e) {
+        setValue(e.target.value)
+    }
 
     return {
         value,
-        setValue,
-        reset: () => setValue(""),
-        bind: {
-            value,
-            onSubmit: event => {
-                setValue(event.target.value);
-            }
-        }
-    }
+        onSubmit,
+    };
 }
