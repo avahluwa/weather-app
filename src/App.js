@@ -11,8 +11,16 @@ function App() {
   return (
     <div className={styles.App}>
       <Background />
-      <Title />
-      <input type="text" {...inputProps} placeholder="Enter location here" />
+      <Title location={inputProps.value} />
+        <form>
+          <input
+            name="Location"
+            className={styles.locationTextBox} 
+            {...inputProps}
+            placeholder="Enter location here"
+          />
+          <button type="submit" value="Submit" />
+        </form>
       <Weather location={inputProps.value} />
     </div>
   );
